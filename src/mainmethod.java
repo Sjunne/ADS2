@@ -35,7 +35,8 @@ public class mainmethod {
         print.printTree(node1);
         System.out.println("\n");
 
-        ArrayList<Integer> integers = tree.postOrder2();
+        ArrayList<Integer> integers = tree.levelOrder();
+        System.out.println(tree.height() + "height");
 
 
         for (int i = 0; i < integers.size(); i++)
