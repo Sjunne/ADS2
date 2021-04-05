@@ -41,7 +41,4 @@ public class BinaryTree_ADT {
         // Otherwise, it's not OK
         return (false);
     }
-
-
-
 }
