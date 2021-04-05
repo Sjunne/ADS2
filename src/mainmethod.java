@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class mainmethod {
     public static void main(String[] args) {
         BinaryTreeNode node1 = new BinaryTreeNode();
@@ -26,7 +28,34 @@ public class mainmethod {
 
         System.out.println(tree.contains(node1, 7));
         //System.out.println(tree.contains(node1, 7));
+
+
+        BinaryTreePrint print = new BinaryTreePrint();
+
+        print.printTree(node1);
+        System.out.println("\n");
+
+        ArrayList<Integer> integers = tree.postOrder2();
+
+
+        for (int i = 0; i < integers.size(); i++)
+        {
+            System.out.println(integers.get(i));
+        }
+
+        /*
+        System.out.println("\n");
+
+        ArrayList<Integer> integers2 = tree.inOrder(tree.getRoot());
+
+        for (int i = 0; i < integers2.size(); i++)
+        {
+            System.out.println(integers2.get(i));
+        }
+
+         */
     }
+
 
 
 }
