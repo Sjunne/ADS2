@@ -163,6 +163,194 @@ public class BinaryTree_ADTTest {
         Assertions.assertEquals(3, height);
     }
 
+    // Testing large BinaryTree 31 nodes ------------------------------------------------------
+    @Test
+    public void TestInOrderMethodTree31NodesBalanced()
+    {
+        setUpTree31NodesBalanced();
+        //nodes elements are 1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31
+        ArrayList<Integer> integers = tree.inOrder();
+        ArrayList<Integer> inOrderArrayList = new ArrayList<>();
+        inOrderArrayList.add(24);
+        inOrderArrayList.add(12);
+        inOrderArrayList.add(25);
+        inOrderArrayList.add(6);
+        inOrderArrayList.add(26);
+        inOrderArrayList.add(13);
+        inOrderArrayList.add(27);
+        inOrderArrayList.add(3);
+        inOrderArrayList.add(28);
+        inOrderArrayList.add(14);
+        inOrderArrayList.add(29);
+        inOrderArrayList.add(7);
+        inOrderArrayList.add(30);
+        inOrderArrayList.add(15);
+        inOrderArrayList.add(31);
+        inOrderArrayList.add(1);
+        inOrderArrayList.add(20);
+        inOrderArrayList.add(10);
+        inOrderArrayList.add(21);
+        inOrderArrayList.add(5);
+        inOrderArrayList.add(22);
+        inOrderArrayList.add(11);
+        inOrderArrayList.add(23);
+        inOrderArrayList.add(2);
+        inOrderArrayList.add(16);
+        inOrderArrayList.add(8);
+        inOrderArrayList.add(17);
+        inOrderArrayList.add(4);
+        inOrderArrayList.add(18);
+        inOrderArrayList.add(9);
+        inOrderArrayList.add(19);
+
+        //we expect the 2 arraylist to be equal
+        Assertions.assertEquals(inOrderArrayList, integers);
+
+        //InOrder:
+        //[24, 12, 25, 6, 26, 13, 27, 3, 28, 14, 29, 7, 30, 15, 31, 1, 20, 10, 21, 5, 22, 11, 23, 2, 16, 8, 17, 4, 18, 9, 19]
+    }
+
+    @Test
+    public void TestPreOrderMethodTree31NodesBalanced()
+    {
+        setUpTree31NodesBalanced();
+        //nodes elements are 1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31
+        ArrayList<Integer> integers = tree.preOrder();
+        ArrayList<Integer> inOrderArrayList = new ArrayList<>();
+
+        inOrderArrayList.add(1);
+        inOrderArrayList.add(3);
+        inOrderArrayList.add(6);
+        inOrderArrayList.add(12);
+        inOrderArrayList.add(24);
+        inOrderArrayList.add(25);
+        inOrderArrayList.add(13);
+        inOrderArrayList.add(26);
+        inOrderArrayList.add(27);
+        inOrderArrayList.add(7);
+        inOrderArrayList.add(14);
+        inOrderArrayList.add(28);
+        inOrderArrayList.add(29);
+        inOrderArrayList.add(15);
+        inOrderArrayList.add(30);
+        inOrderArrayList.add(31);
+        inOrderArrayList.add(2);
+        inOrderArrayList.add(5);
+        inOrderArrayList.add(10);
+        inOrderArrayList.add(20);
+        inOrderArrayList.add(21);
+        inOrderArrayList.add(11);
+        inOrderArrayList.add(22);
+        inOrderArrayList.add(23);
+        inOrderArrayList.add(4);
+        inOrderArrayList.add(8);
+        inOrderArrayList.add(16);
+        inOrderArrayList.add(17);
+        inOrderArrayList.add(9);
+        inOrderArrayList.add(18);
+        inOrderArrayList.add(19);
+
+        //we expect the 2 arraylist to be equal
+        Assertions.assertEquals(inOrderArrayList, integers);
+
+        //PreOrder:
+        //[1, 3, 6, 12, 24, 25, 13, 26, 27, 7, 14, 28, 29, 15, 30, 31, 2, 5, 10, 20, 21, 11, 22, 23, 4, 8, 16, 17, 9, 18, 19]
+    }
+
+    @Test
+    public void TestPostOrderMethodTree31NodesBalanced()
+    {
+        setUpTree31NodesBalanced();
+        //nodes elements are 1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31
+        ArrayList<Integer> integers = tree.postOrder();
+        ArrayList<Integer> inOrderArrayList = new ArrayList<>();
+
+        inOrderArrayList.add(24);
+        inOrderArrayList.add(25);
+        inOrderArrayList.add(12);
+        inOrderArrayList.add(26);
+        inOrderArrayList.add(27);
+        inOrderArrayList.add(13);
+        inOrderArrayList.add(6);
+        inOrderArrayList.add(28);
+        inOrderArrayList.add(29);
+        inOrderArrayList.add(14);
+        inOrderArrayList.add(30);
+        inOrderArrayList.add(31);
+        inOrderArrayList.add(15);
+        inOrderArrayList.add(7);
+        inOrderArrayList.add(3);
+        inOrderArrayList.add(20);
+        inOrderArrayList.add(21);
+        inOrderArrayList.add(10);
+        inOrderArrayList.add(22);
+        inOrderArrayList.add(23);
+        inOrderArrayList.add(11);
+        inOrderArrayList.add(5);
+        inOrderArrayList.add(16);
+        inOrderArrayList.add(17);
+        inOrderArrayList.add(8);
+        inOrderArrayList.add(18);
+        inOrderArrayList.add(19);
+        inOrderArrayList.add(9);
+        inOrderArrayList.add(4);
+        inOrderArrayList.add(2);
+        inOrderArrayList.add(1);
+
+        //we expect the 2 arraylist to be equal
+        Assertions.assertEquals(inOrderArrayList, integers);
+
+        //PostOrder:
+        //[24, 25, 12, 26, 27, 13, 6, 28, 29, 14, 30, 31, 15, 7, 3, 20, 21, 10, 22, 23, 11, 5, 16, 17, 8, 18, 19, 9, 4, 2, 1]
+    }
+
+    @Test
+    public void TestLevelOrderMethodTree31NodesBalanced()
+    {
+        setUpTree31NodesBalanced();
+        //nodes elements are 1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31
+        ArrayList<Integer> integers = tree.levelOrder();
+        ArrayList<Integer> inOrderArrayList = new ArrayList<>();
+
+        inOrderArrayList.add(1);
+        inOrderArrayList.add(3);
+        inOrderArrayList.add(2);
+        inOrderArrayList.add(6);
+        inOrderArrayList.add(7);
+        inOrderArrayList.add(5);
+        inOrderArrayList.add(4);
+        inOrderArrayList.add(12);
+        inOrderArrayList.add(13);
+        inOrderArrayList.add(14);
+        inOrderArrayList.add(15);
+        inOrderArrayList.add(10);
+        inOrderArrayList.add(11);
+        inOrderArrayList.add(8);
+        inOrderArrayList.add(9);
+        inOrderArrayList.add(24);
+        inOrderArrayList.add(25);
+        inOrderArrayList.add(26);
+        inOrderArrayList.add(27);
+        inOrderArrayList.add(28);
+        inOrderArrayList.add(29);
+        inOrderArrayList.add(30);
+        inOrderArrayList.add(31);
+        inOrderArrayList.add(20);
+        inOrderArrayList.add(21);
+        inOrderArrayList.add(22);
+        inOrderArrayList.add(23);
+        inOrderArrayList.add(16);
+        inOrderArrayList.add(17);
+        inOrderArrayList.add(18);
+        inOrderArrayList.add(19);
+
+        //we expect the 2 arraylist to be equal
+        Assertions.assertEquals(inOrderArrayList, integers);
+
+        //LevelOrder:
+        //[1, 3, 2, 6, 7, 5, 4, 12, 13, 14, 15, 10, 11, 8, 9, 24, 25, 26, 27, 28, 29, 30, 31, 20, 21, 22, 23, 16, 17, 18, 19]
+    }
+
     private void setUpTree6NotesLeftHeavySide()
     {
         BinaryTreeNode node1 = new BinaryTreeNode();
@@ -382,7 +570,7 @@ public class BinaryTree_ADTTest {
         node20.setElement(20);
     }
 
-    private void setUpTree31NotesBalanced()
+    private void setUpTree31NodesBalanced()
     {
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
