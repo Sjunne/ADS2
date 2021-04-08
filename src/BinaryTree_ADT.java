@@ -155,7 +155,6 @@ public class BinaryTree_ADT {
             if(poll.getRightChild() != null)
                 queue1.add(poll.getRightChild());
         }
-
         return list;
     }
 
@@ -168,7 +167,7 @@ public class BinaryTree_ADT {
         Queue<BinaryTreeNode> heightQueue = new LinkedList<>();
 
         heightQueue.add(node);
-        int height = 1;
+        int height = -1;
 
         while(true)
         {
@@ -216,11 +215,10 @@ public class BinaryTree_ADT {
 
 
 
+/*
 
-     /*
     public ArrayList<Integer> postOrder2()
     {
-
         if (node == null)
             return null;
 
@@ -255,10 +253,10 @@ public class BinaryTree_ADT {
                 current = null;
             }
         }
-
-
     }
 
-     */
+
+ */
+
 
 }

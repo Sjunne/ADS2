@@ -1,0 +1,487 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
+public class BinaryTree_ADTTest {
+
+    private BinaryTree_ADT tree;
+
+    @BeforeEach
+    public void BinaryTree_ADTTest()
+    {
+        tree = new BinaryTree_ADT();
+    }
+
+
+    @Test
+    public void TestSetAndGetRoot()
+    {
+        BinaryTreeNode rootNode = new BinaryTreeNode();
+        tree.setRoot(rootNode);
+
+        BinaryTreeNode root = tree.getRoot();
+
+        //Check om den vi har lavet, er ens med træets rod
+        Assertions.assertEquals(rootNode, root);
+    }
+
+
+    @Test
+    public void TestIsEmpty()
+    {
+        //Check if root is empty, when it has never been set
+        BinaryTreeNode root = tree.getRoot();
+        Assertions.assertEquals(null, root);
+
+        //check if isEmptyMessageWorks
+        boolean empty = tree.isEmpty();
+        Assertions.assertEquals(true, empty);
+    }
+
+
+    @Test
+    public void TestInOrderMethod()
+    {
+        setUpTree6NotesLeftHeavySide();
+        //nodes elements are 1-2-3-4-5-6
+        ArrayList<Integer> integers = tree.inOrder();
+        ArrayList<Integer> inOrderArrayList = new ArrayList<>();
+        inOrderArrayList.add(6);
+        inOrderArrayList.add(4);
+        inOrderArrayList.add(2);
+        inOrderArrayList.add(5);
+        inOrderArrayList.add(1);
+        inOrderArrayList.add(3);
+
+        //we expect the 2 arraylist to be equal
+        Assertions.assertEquals(inOrderArrayList, integers);
+
+
+        
+    }
+
+    @Test
+    public void size()
+    {
+        //testing size after Inorder, as size uses it.
+        setUpTree6NotesLeftHeavySide();
+        //nodes elements are 1-2-3-4-5-6
+        //so we expect size to be equal to 6
+
+        int size = tree.size();
+        Assertions.assertEquals(6, size);
+    }
+
+
+    @Test
+    public void testCointainsMethod()
+    {
+        //nodes elements are 1-2-3-4-5-6
+        setUpTree6NotesLeftHeavySide();
+
+        //we expect to get true, when searching for a node with element 4
+        int element4 = 4;
+        Assertions.assertEquals(true, tree.contains(tree.getRoot(), element4));
+
+        //we expect to get false when searching for a node with element 7
+        int element7 = 7;
+        Assertions.assertEquals(false, tree.contains(tree.getRoot(), element7));
+
+        //we expect to get false, even when the node 4 is negative
+        int negative4 = -4;
+        Assertions.assertEquals(false, tree.contains(tree.getRoot(), negative4));
+    }
+
+    @Test
+    public void testPreOrderMethod()
+    {
+        setUpTree6NotesLeftHeavySide();
+        //nodes elements are 1-2-3-4-5-6
+        ArrayList<Integer> integers = tree.preOrder();
+        ArrayList<Integer> inPreOrderArrayList = new ArrayList<>();
+        inPreOrderArrayList.add(1);
+        inPreOrderArrayList.add(2);
+        inPreOrderArrayList.add(4);
+        inPreOrderArrayList.add(6);
+        inPreOrderArrayList.add(5);
+        inPreOrderArrayList.add(3);
+
+        //we expect the 2 arraylist to be equal
+        Assertions.assertEquals(inPreOrderArrayList, integers);
+    }
+
+    @Test
+    public void testPostOrderMethod()
+    {
+        setUpTree6NotesLeftHeavySide();
+        //nodes elements are 1-2-3-4-5-6
+        ArrayList<Integer> integers = tree.postOrder();
+        ArrayList<Integer> inPostOrderArrayList = new ArrayList<>();
+        inPostOrderArrayList.add(6);
+        inPostOrderArrayList.add(4);
+        inPostOrderArrayList.add(5);
+        inPostOrderArrayList.add(2);
+        inPostOrderArrayList.add(3);
+        inPostOrderArrayList.add(1);
+
+        //we expect the 2 arraylist to be equal
+        Assertions.assertEquals(inPostOrderArrayList, integers);
+    }
+
+    @Test
+    public void testLevelOrder()
+    {
+        setUpTree6NotesLeftHeavySide();
+        //nodes elements are 1-2-3-4-5-6
+        ArrayList<Integer> integers = tree.levelOrder();
+        ArrayList<Integer> inLevelOrder = new ArrayList<>();
+        inLevelOrder.add(1);
+        inLevelOrder.add(2);
+        inLevelOrder.add(3);
+        inLevelOrder.add(4);
+        inLevelOrder.add(5);
+        inLevelOrder.add(6);
+
+        //we expect the 2 arraylist to be equal
+        Assertions.assertEquals(inLevelOrder, integers);
+    }
+
+    @Test
+    public void testHeightOfTree()
+    {
+        //hvis tree'et er tomt, skal height returne -1
+        int height0 = tree.height();
+        Assertions.assertEquals(-1, height0);
+
+
+        setUpTree6NotesLeftHeavySide();
+        //nodes elements are 1-2-3-4-5-6
+        //the height of current tree is 3
+        int height = tree.height();
+        Assertions.assertEquals(3, height);
+    }
+
+    private void setUpTree6NotesLeftHeavySide()
+    {
+        BinaryTreeNode node1 = new BinaryTreeNode();
+        BinaryTreeNode node2 = new BinaryTreeNode();
+        BinaryTreeNode node3 = new BinaryTreeNode();
+        BinaryTreeNode node4 = new BinaryTreeNode();
+        BinaryTreeNode node5 = new BinaryTreeNode();
+        BinaryTreeNode node6 = new BinaryTreeNode();
+
+        tree.setRoot(node1);
+        node1.addLeftChild(node2);
+        node1.addRightChild(node3);
+        node2.addLeftChild(node4);
+        node2.addRightChild(node5);
+        node4.addLeftChild(node6);
+
+        node1.setElement(1);
+        node2.setElement(2);
+        node3.setElement(3);
+        node4.setElement(4);
+        node5.setElement(5);
+        node6.setElement(6);
+    }
+
+
+    private void setUpTree6NotesRightHeavySide()
+    {
+        BinaryTreeNode node1 = new BinaryTreeNode();
+        BinaryTreeNode node2 = new BinaryTreeNode();
+        BinaryTreeNode node3 = new BinaryTreeNode();
+        BinaryTreeNode node4 = new BinaryTreeNode();
+        BinaryTreeNode node5 = new BinaryTreeNode();
+        BinaryTreeNode node6 = new BinaryTreeNode();
+
+        tree.setRoot(node1);
+        node1.addLeftChild(node2);
+        node1.addRightChild(node3);
+        node3.addLeftChild(node4);
+        node3.addRightChild(node5);
+        node4.addLeftChild(node6);
+
+        node1.setElement(1);
+        node2.setElement(2);
+        node3.setElement(3);
+        node4.setElement(4);
+        node5.setElement(5);
+        node6.setElement(6);
+    }
+
+
+    private void setUpTree7NotesBalanced()
+    {
+        BinaryTreeNode node1 = new BinaryTreeNode();
+        BinaryTreeNode node2 = new BinaryTreeNode();
+        BinaryTreeNode node3 = new BinaryTreeNode();
+        BinaryTreeNode node4 = new BinaryTreeNode();
+        BinaryTreeNode node5 = new BinaryTreeNode();
+        BinaryTreeNode node6 = new BinaryTreeNode();
+        BinaryTreeNode node7 = new BinaryTreeNode();
+
+        tree.setRoot(node1);
+        node1.addLeftChild(node2);
+        node1.addRightChild(node3);
+        node2.addLeftChild(node4);
+        node2.addRightChild(node5);
+        node3.addLeftChild(node6);
+        node3.addLeftChild(node7);
+
+        node1.setElement(1);
+        node2.setElement(2);
+        node3.setElement(3);
+        node4.setElement(4);
+        node5.setElement(5);
+        node6.setElement(6);
+        node7.setElement(7);
+    }
+
+
+
+    private void setUpTree20NotesLeftHeavySide()
+    {
+        BinaryTreeNode node1 = new BinaryTreeNode();
+        BinaryTreeNode node2 = new BinaryTreeNode();
+        BinaryTreeNode node3 = new BinaryTreeNode();
+        BinaryTreeNode node4 = new BinaryTreeNode();
+        BinaryTreeNode node5 = new BinaryTreeNode();
+        BinaryTreeNode node6 = new BinaryTreeNode();
+        BinaryTreeNode node7 = new BinaryTreeNode();
+        BinaryTreeNode node8 = new BinaryTreeNode();
+        BinaryTreeNode node9 = new BinaryTreeNode();
+        BinaryTreeNode node10 = new BinaryTreeNode();
+        BinaryTreeNode node11 = new BinaryTreeNode();
+        BinaryTreeNode node12 = new BinaryTreeNode();
+        BinaryTreeNode node13 = new BinaryTreeNode();
+        BinaryTreeNode node14 = new BinaryTreeNode();
+        BinaryTreeNode node15 = new BinaryTreeNode();
+        BinaryTreeNode node16 = new BinaryTreeNode();
+        BinaryTreeNode node17 = new BinaryTreeNode();
+        BinaryTreeNode node18 = new BinaryTreeNode();
+        BinaryTreeNode node19 = new BinaryTreeNode();
+        BinaryTreeNode node20 = new BinaryTreeNode();
+
+
+
+        tree.setRoot(node1);
+
+        node1.addRightChild(node2);
+        node1.addLeftChild(node3);
+        node2.addRightChild(node4);
+        node2.addLeftChild(node5);
+        node3.addLeftChild(node6);
+        node3.addRightChild(node7);
+        node4.addRightChild(node8);
+        node4.addLeftChild(node9);
+        node5.addLeftChild(node10);
+        node5.addRightChild(node11);
+        node8.addLeftChild(node12);
+        node8.addRightChild(node13);
+        node9.addLeftChild(node14);
+        node9.addRightChild(node15);
+        node10.addLeftChild(node16);
+        node10.addRightChild(node17);
+        node11.addLeftChild(node18);
+        node11.addRightChild(node19);
+        node12.addLeftChild(node20);
+
+
+
+        node1.setElement(1);
+        node2.setElement(2);
+        node3.setElement(3);
+        node4.setElement(4);
+        node5.setElement(5);
+        node6.setElement(6);
+        node7.setElement(7);
+        node8.setElement(8);
+        node9.setElement(9);
+        node10.setElement(10);
+        node11.setElement(11);
+        node12.setElement(12);
+        node13.setElement(13);
+        node14.setElement(14);
+        node15.setElement(15);
+        node16.setElement(16);
+        node17.setElement(17);
+        node18.setElement(18);
+        node19.setElement(19);
+        node20.setElement(20);
+    }
+
+    private void setUpTree20NotesRightHeavySide()
+    {
+        BinaryTreeNode node1 = new BinaryTreeNode();
+        BinaryTreeNode node2 = new BinaryTreeNode();
+        BinaryTreeNode node3 = new BinaryTreeNode();
+        BinaryTreeNode node4 = new BinaryTreeNode();
+        BinaryTreeNode node5 = new BinaryTreeNode();
+        BinaryTreeNode node6 = new BinaryTreeNode();
+        BinaryTreeNode node7 = new BinaryTreeNode();
+        BinaryTreeNode node8 = new BinaryTreeNode();
+        BinaryTreeNode node9 = new BinaryTreeNode();
+        BinaryTreeNode node10 = new BinaryTreeNode();
+        BinaryTreeNode node11 = new BinaryTreeNode();
+        BinaryTreeNode node12 = new BinaryTreeNode();
+        BinaryTreeNode node13 = new BinaryTreeNode();
+        BinaryTreeNode node14 = new BinaryTreeNode();
+        BinaryTreeNode node15 = new BinaryTreeNode();
+        BinaryTreeNode node16 = new BinaryTreeNode();
+        BinaryTreeNode node17 = new BinaryTreeNode();
+        BinaryTreeNode node18 = new BinaryTreeNode();
+        BinaryTreeNode node19 = new BinaryTreeNode();
+        BinaryTreeNode node20 = new BinaryTreeNode();
+
+
+
+        tree.setRoot(node1);
+
+        node1.addRightChild(node2);
+        node1.addLeftChild(node3);
+        node2.addRightChild(node4);
+        node2.addLeftChild(node5);
+        node3.addLeftChild(node6);
+        node3.addRightChild(node7);
+        node6.addLeftChild(node8);
+        node6.addRightChild(node9);
+        node7.addLeftChild(node10);
+        node7.addRightChild(node11);
+        node8.addLeftChild(node12);
+        node8.addRightChild(node13);
+        node9.addLeftChild(node14);
+        node9.addRightChild(node15);
+        node10.addLeftChild(node16);
+        node10.addRightChild(node17);
+        node11.addLeftChild(node18);
+        node12.addRightChild(node19);
+        node13.addLeftChild(node20);
+
+        node1.setElement(1);
+        node2.setElement(2);
+        node3.setElement(3);
+        node4.setElement(4);
+        node5.setElement(5);
+        node6.setElement(6);
+        node7.setElement(7);
+        node8.setElement(8);
+        node9.setElement(9);
+        node10.setElement(10);
+        node11.setElement(11);
+        node12.setElement(12);
+        node13.setElement(13);
+        node14.setElement(14);
+        node15.setElement(15);
+        node16.setElement(16);
+        node17.setElement(17);
+        node18.setElement(18);
+        node19.setElement(19);
+        node20.setElement(20);
+    }
+
+    private void setUpTree31NotesBalanced()
+    {
+        BinaryTreeNode node1 = new BinaryTreeNode();
+        BinaryTreeNode node2 = new BinaryTreeNode();
+        BinaryTreeNode node3 = new BinaryTreeNode();
+        BinaryTreeNode node4 = new BinaryTreeNode();
+        BinaryTreeNode node5 = new BinaryTreeNode();
+        BinaryTreeNode node6 = new BinaryTreeNode();
+        BinaryTreeNode node7 = new BinaryTreeNode();
+        BinaryTreeNode node8 = new BinaryTreeNode();
+        BinaryTreeNode node9 = new BinaryTreeNode();
+        BinaryTreeNode node10 = new BinaryTreeNode();
+        BinaryTreeNode node11 = new BinaryTreeNode();
+        BinaryTreeNode node12 = new BinaryTreeNode();
+        BinaryTreeNode node13 = new BinaryTreeNode();
+        BinaryTreeNode node14 = new BinaryTreeNode();
+        BinaryTreeNode node15 = new BinaryTreeNode();
+        BinaryTreeNode node16 = new BinaryTreeNode();
+        BinaryTreeNode node17 = new BinaryTreeNode();
+        BinaryTreeNode node18 = new BinaryTreeNode();
+        BinaryTreeNode node19 = new BinaryTreeNode();
+        BinaryTreeNode node20 = new BinaryTreeNode();
+        BinaryTreeNode node21 = new BinaryTreeNode();
+        BinaryTreeNode node22 = new BinaryTreeNode();
+        BinaryTreeNode node23 = new BinaryTreeNode();
+        BinaryTreeNode node24 = new BinaryTreeNode();
+        BinaryTreeNode node25 = new BinaryTreeNode();
+        BinaryTreeNode node26 = new BinaryTreeNode();
+        BinaryTreeNode node27 = new BinaryTreeNode();
+        BinaryTreeNode node28 = new BinaryTreeNode();
+        BinaryTreeNode node29 = new BinaryTreeNode();
+        BinaryTreeNode node30 = new BinaryTreeNode();
+        BinaryTreeNode node31 = new BinaryTreeNode();
+
+
+        tree.setRoot(node1);
+
+        node1.addRightChild(node2);
+        node1.addLeftChild(node3);
+        node2.addRightChild(node4);
+        node2.addLeftChild(node5);
+        node3.addLeftChild(node6);
+        node3.addRightChild(node7);
+        node4.addLeftChild(node8);
+        node4.addRightChild(node9);
+        node5.addLeftChild(node10);
+        node5.addRightChild(node11);
+        node6.addLeftChild(node12);
+        node6.addRightChild(node13);
+        node7.addLeftChild(node14);
+        node7.addRightChild(node15);
+        node8.addLeftChild(node16);
+        node8.addRightChild(node17);
+        node9.addLeftChild(node18);
+        node9.addRightChild(node19);
+        node10.addLeftChild(node20);
+
+        node10.addRightChild(node21);
+        node11.addLeftChild(node22);
+        node11.addRightChild(node23);
+        node12.addLeftChild(node24);
+        node12.addRightChild(node25);
+        node13.addLeftChild(node26);
+        node13.addRightChild(node27);
+        node14.addLeftChild(node28);
+        node14.addRightChild(node29);
+        node15.addLeftChild(node30);
+        node15.addRightChild(node31);
+
+        node1.setElement(1);
+        node2.setElement(2);
+        node3.setElement(3);
+        node4.setElement(4);
+        node5.setElement(5);
+        node6.setElement(6);
+        node7.setElement(7);
+        node8.setElement(8);
+        node9.setElement(9);
+        node10.setElement(10);
+        node11.setElement(11);
+        node12.setElement(12);
+        node13.setElement(13);
+        node14.setElement(14);
+        node15.setElement(15);
+        node16.setElement(16);
+        node17.setElement(17);
+        node18.setElement(18);
+        node19.setElement(19);
+        node20.setElement(20);
+        node21.setElement(21);
+        node22.setElement(22);
+        node23.setElement(23);
+        node24.setElement(24);
+        node25.setElement(25);
+        node26.setElement(26);
+        node27.setElement(27);
+        node28.setElement(28);
+        node29.setElement(29);
+        node30.setElement(30);
+        node31.setElement(31);
+    }
+
+}
