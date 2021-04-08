@@ -1,5 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BinaryTree_ADT {
@@ -25,7 +27,8 @@ public class BinaryTree_ADT {
 
     public int size()
     {
-        return 6;
+        ArrayList<Integer> tmp = inOrder();
+        return tmp.size();
     }
 
     public boolean contains(BinaryTreeNode node, int element)
@@ -97,48 +100,9 @@ public class BinaryTree_ADT {
     }
 
 
+
+
     public ArrayList<Integer> postOrder()
-    {
-
-        if (node == null)
-            return null;
-
-        Stack<BinaryTreeNode> s = new Stack<>();
-        BinaryTreeNode current = node;
-
-        while (true)
-        {
-            while (current != null)
-            {
-                if (current.getRightChild() != null)
-                    s.push(current.getRightChild());
-                s.push(current);
-                current = current.getLeftChild();
-            }
-
-            if (s.isEmpty())
-                return list;
-
-
-            current = s.pop();
-
-            if (current.getRightChild() != null && !s.isEmpty() && current.getRightChild() == s.peek())
-            {
-                s.pop();
-                s.push(current);
-                current = current.getRightChild();
-            }
-            else
-            {
-                list.add(current.getElement());
-                current = null;
-            }
-        }
-
-    }
-
-
-    public ArrayList<Integer> postOrder2()
     {
         // Create two stacks
         Stack<BinaryTreeNode> s1 = new Stack<>();
@@ -173,7 +137,126 @@ public class BinaryTree_ADT {
         return list;
     }
 
+    public ArrayList<Integer> levelOrder()
+    {
+        if(node == null)
+            return null;
 
+        Queue<BinaryTreeNode> queue1 = new LinkedList<>();
+        queue1.add(node);
+
+        while(queue1.size() != 0)
+        {
+            BinaryTreeNode poll = queue1.poll();
+            list.add(poll.getElement());
+
+            if(poll.getLeftChild() != null)
+                queue1.add(poll.getLeftChild());
+            if(poll.getRightChild() != null)
+                queue1.add(poll.getRightChild());
+        }
+        return list;
+    }
+
+
+    public int height()
+    {
+        if(node == null)
+            return -1;
+
+        Queue<BinaryTreeNode> heightQueue = new LinkedList<>();
+
+        heightQueue.add(node);
+        int height = -1;
+
+        while(true)
+        {
+            int nodeCount = heightQueue.size();
+            if(nodeCount == 0)
+                return height;
+            else
+                height++;
+
+            while (nodeCount > 0)
+            {
+                BinaryTreeNode poll = heightQueue.poll();
+                if(poll.getLeftChild() != null)
+                heightQueue.add(poll.getLeftChild());
+                if(poll.getRightChild() != null)
+                heightQueue.add(poll.getRightChild());
+                nodeCount--;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+    public ArrayList<Integer> postOrder2()
+    {
+        if (node == null)
+            return null;
+
+        Stack<BinaryTreeNode> s = new Stack<>();
+        BinaryTreeNode current = node;
+
+        while (true)
+        {
+            while (current != null)
+            {
+                if (current.getRightChild() != null)
+                    s.push(current.getRightChild());
+                s.push(current);
+                current = current.getLeftChild();
+            }
+
+            if (s.isEmpty())
+                return list;
+
+
+            current = s.pop();
+
+            if (current.getRightChild() != null && !s.isEmpty() && current.getRightChild() == s.peek())
+            {
+                s.pop();
+                s.push(current);
+                current = current.getRightChild();
+            }
+            else
+            {
+                list.add(current.getElement());
+                current = null;
+            }
+        }
+    }
+
+
+ */
 
 
 }
