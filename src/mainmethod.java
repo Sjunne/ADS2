@@ -2,7 +2,10 @@ import java.util.ArrayList;
 
 public class mainmethod {
     public static void main(String[] args) {
-        BinaryTree_ADT tree = new BinaryTree_ADT();
+
+        BinaryTree_ADT tree = new BinarySearchTreeADT();
+
+
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
         BinaryTreeNode node3 = new BinaryTreeNode();

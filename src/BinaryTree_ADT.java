@@ -6,8 +6,6 @@ import java.util.Stack;
 
 public class BinaryTree_ADT {
     private BinaryTreeNode node;
-    private int size;
-    private ArrayList<Integer> list = new ArrayList<>();
 
 
     public BinaryTreeNode getRoot()
@@ -52,6 +50,8 @@ public class BinaryTree_ADT {
 
     public ArrayList<Integer> inOrder()
     {
+        ArrayList<Integer> list = new ArrayList<>();
+
         if(node == null)
         {
             return null;
@@ -76,6 +76,8 @@ public class BinaryTree_ADT {
 
     public ArrayList<Integer> preOrder()
     {
+        ArrayList<Integer> list = new ArrayList<>();
+
         if(node == null)
         {
             return null;
@@ -104,6 +106,8 @@ public class BinaryTree_ADT {
 
     public ArrayList<Integer> postOrder()
     {
+        ArrayList<Integer> list = new ArrayList<>();
+
         // Create two stacks
         Stack<BinaryTreeNode> s1 = new Stack<>();
         Stack<BinaryTreeNode> s2 = new Stack<>();
@@ -139,6 +143,8 @@ public class BinaryTree_ADT {
 
     public ArrayList<Integer> levelOrder()
     {
+        ArrayList<Integer> list = new ArrayList<>();
+
         if(node == null)
             return null;
 
