@@ -28,6 +28,7 @@ public class BinaryTree_ADTTest {
     }
 
 
+
     @Test
     public void TestIsEmpty()
     {
@@ -351,6 +352,76 @@ public class BinaryTree_ADTTest {
         //[1, 3, 2, 6, 7, 5, 4, 12, 13, 14, 15, 10, 11, 8, 9, 24, 25, 26, 27, 28, 29, 30, 31, 20, 21, 22, 23, 16, 17, 18, 19]
     }
 
+
+    @Test
+    public void removeLeafNode()
+    {
+        setUpTree6NotesLeftHeavySide();
+        tree.removeElement(3);
+
+        ArrayList<Integer> integers = tree.inOrder();
+        ArrayList<Integer> correctInOrder = new ArrayList<>();
+        correctInOrder.add(6);
+        correctInOrder.add(4);
+        correctInOrder.add(2);
+        correctInOrder.add(5);
+        correctInOrder.add(1);
+
+        Assertions.assertEquals(correctInOrder, integers);
+
+    }
+
+    @Test
+    public void removeNodeWithRightChild()
+    {
+        setUpTree6NotesLeftHeavySide();
+        tree.removeElement(2);
+        ArrayList<Integer> integers = tree.inOrder();
+        ArrayList<Integer> correctInOrder = new ArrayList<>();
+        correctInOrder.add(6);
+        correctInOrder.add(5);
+        correctInOrder.add(4);
+        correctInOrder.add(3);
+        correctInOrder.add(1);
+
+        Assertions.assertEquals(correctInOrder, integers);
+
+    }
+
+    @Test
+    public void removeNodeWithLeftChild()
+    {
+        setUpTree6NotesLeftHeavySide();
+        tree.removeElement(5);
+        ArrayList<Integer> integers = tree.inOrder();
+        ArrayList<Integer> correctInOrder = new ArrayList<>();
+        correctInOrder.add(6);
+        correctInOrder.add(4);
+        correctInOrder.add(2);
+        correctInOrder.add(3);
+        correctInOrder.add(1);
+
+        Assertions.assertEquals(correctInOrder, integers);
+    }
+
+    @Test
+    public void removeARootNode()
+    {
+
+        setUpTree6NotesLeftHeavySide();
+        tree.removeElement(1);
+        ArrayList<Integer> integers = tree.inOrder();
+        ArrayList<Integer> correctInOrder = new ArrayList<>();
+        correctInOrder.add(6);
+        correctInOrder.add(4);
+        correctInOrder.add(2);
+        correctInOrder.add(5);
+        correctInOrder.add(3);
+
+        Assertions.assertEquals(correctInOrder, integers);
+
+    }
+
     private void setUpTree6NotesLeftHeavySide()
     {
         BinaryTreeNode node1 = new BinaryTreeNode();
@@ -671,5 +742,8 @@ public class BinaryTree_ADTTest {
         node30.setElement(30);
         node31.setElement(31);
     }
+
+
+
 
 }

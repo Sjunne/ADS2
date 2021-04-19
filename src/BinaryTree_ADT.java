@@ -190,6 +190,54 @@ public class BinaryTree_ADT {
     }
 
 
+    public BinaryTreeNode removeElement(int element)
+    {
+        return deleteNode(node, element);
+    }
+
+    private BinaryTreeNode deleteNode(BinaryTreeNode root, int data) {
+
+        if(root == null) return root;
+
+        if(data < root.getElement()) {
+            BinaryTreeNode leftChild = root.getLeftChild();
+            deleteNode(root.getLeftChild(), data);
+
+        } else if(data > root.getElement()) {
+            root.addRightChild(deleteNode(root.getRightChild(), data));
+        } else {
+            // node with no leaf nodes
+            if(root.getLeftChild() == null && root.getRightChild() == null) {
+
+                return null;
+            } else if(root.getLeftChild() == null) {
+                // node with one node (no left node)
+
+                return root.getRightChild();
+            } else if(root.getRightChild() == null) {
+                // node with one node (no right node)
+
+                return root.getLeftChild();
+            } else {
+                // nodes with two nodes
+                // search for min number in right sub tree
+                Integer minValue = minValue(root.getRightChild());
+                root.setElement(minValue);
+                root.addRightChild(deleteNode(root.getRightChild(), minValue));
+
+            }
+        }
+
+        return root;
+    }
+
+    private Integer minValue(BinaryTreeNode node) {
+
+        if(node.getLeftChild() != null) {
+            return minValue(node.getLeftChild());
+        }
+        return node.getElement();
+    }
 
 
 
