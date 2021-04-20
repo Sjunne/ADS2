@@ -4,6 +4,7 @@ public class mainmethod {
     public static void main(String[] args) {
 
         BinaryTree_ADT tree = new BinaryTree_ADT();
+
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
         BinaryTreeNode node3 = new BinaryTreeNode();

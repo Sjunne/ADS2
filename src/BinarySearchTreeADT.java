@@ -28,6 +28,7 @@ public class BinarySearchTreeADT extends BinaryTree_ADT
         }
     }
 
+    /*
     public void removeElement(int element)
     {
         boolean contains = contains(super.getRoot(), element);
@@ -41,5 +42,5 @@ public class BinarySearchTreeADT extends BinaryTree_ADT
             return;
         }
     }
-
+*/
 }
