@@ -7,11 +7,12 @@ import java.util.ArrayList;
 public class BinaryTree_ADTTest {
 
     private BinaryTree_ADT tree;
-
+    private BinarySearchTreeADT searchTreeADT;
     @BeforeEach
     public void BinaryTree_ADTTest()
     {
         tree = new BinaryTree_ADT();
+        searchTreeADT = new BinarySearchTreeADT();
     }
 
 
@@ -358,7 +359,6 @@ public class BinaryTree_ADTTest {
     {
         setUpTree6NotesLeftHeavySide();
         tree.removeElement(3);
-
         ArrayList<Integer> integers = tree.inOrder();
         ArrayList<Integer> correctInOrder = new ArrayList<>();
         correctInOrder.add(6);
@@ -369,45 +369,11 @@ public class BinaryTree_ADTTest {
 
         Assertions.assertEquals(correctInOrder, integers);
 
-    }
-
-    @Test
-    public void removeNodeWithRightChild()
-    {
-        setUpTree6NotesLeftHeavySide();
-        tree.removeElement(2);
-        ArrayList<Integer> integers = tree.inOrder();
-        ArrayList<Integer> correctInOrder = new ArrayList<>();
-        correctInOrder.add(6);
-        correctInOrder.add(5);
-        correctInOrder.add(4);
-        correctInOrder.add(3);
-        correctInOrder.add(1);
-
-        Assertions.assertEquals(correctInOrder, integers);
-
-    }
-
-    @Test
-    public void removeNodeWithLeftChild()
-    {
-        setUpTree6NotesLeftHeavySide();
-        tree.removeElement(5);
-        ArrayList<Integer> integers = tree.inOrder();
-        ArrayList<Integer> correctInOrder = new ArrayList<>();
-        correctInOrder.add(6);
-        correctInOrder.add(4);
-        correctInOrder.add(2);
-        correctInOrder.add(3);
-        correctInOrder.add(1);
-
-        Assertions.assertEquals(correctInOrder, integers);
     }
 
     @Test
     public void removeARootNode()
     {
-
         setUpTree6NotesLeftHeavySide();
         tree.removeElement(1);
         ArrayList<Integer> integers = tree.inOrder();

@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTreeADT extends BinaryTree_ADT
 {
 
@@ -28,18 +31,10 @@ public class BinarySearchTreeADT extends BinaryTree_ADT
         }
     }
 
-    public void removeElement(int element)
-    {
-        boolean contains = contains(super.getRoot(), element);
 
-        if (!contains)
-        {
 
-        }
-        else
-        {
-            return;
-        }
-    }
+
+
+
 
 }

@@ -4,7 +4,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class BinaryTree_ADT {
+public class BinaryTree_ADT
+{
     private BinaryTreeNode node;
 
 
@@ -193,12 +194,13 @@ public class BinaryTree_ADT {
                 nodeCount--;
             }
         }
-    }
 
+
+    }
 
     public BinaryTreeNode removeElement(int element)
     {
-        return deleteNode(node, element);
+        return deleteNode(getRoot(), element);
     }
 
     private BinaryTreeNode deleteNode(BinaryTreeNode root, int data) {
