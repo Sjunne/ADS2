@@ -14,6 +14,7 @@ public class BinarySearchTreeADT_Test {
     public void BinarySearchTreeADT_Test()
     {
         searchTree = new BinarySearchTreeADT();
+        searchTree2 = new BinarySearchTreeADT();
     }
 
     /*
@@ -103,14 +104,14 @@ public class BinarySearchTreeADT_Test {
         // We expect the result to be true as the two trees are not equal
         Assertions.assertNotEquals(searchTree, searchTree2);
 
-        searchTree.rebalance(); // Need method
+        searchTree2.rebalance(); // Need method
 
         // We expect the result to be true
-        Assertions.assertEquals(searchTree, searchTree2);
+        Assertions.assertEquals(searchTree2, searchTree2);
     }
 
 
-    private void setupBBSTWith7Notes(BinarySearchTreeADT searchTree)
+    private BinarySearchTreeADT setupBBSTWith7Notes(BinarySearchTreeADT searchTree)
     {
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
@@ -137,7 +138,7 @@ public class BinarySearchTreeADT_Test {
         node5.setElement(5);
         node6.setElement(6);
         node6.setElement(6);
-
+        return searchTree;
     }
 
 

@@ -7,29 +7,23 @@ public class BinarySearchTreeADT extends BinaryTree_ADT
 
     public void insert(int element)
     {
-        if (super.getRoot() == null)
-        {
-            BinaryTreeNode node = new BinaryTreeNode();
-            node.setElement(element);
-            super.setRoot(node);
-            return;
+        insert_Recursive(getRoot(), element);
+    }
+
+    BinaryTreeNode insert_Recursive(BinaryTreeNode root, int element) {
+
+        if (root == null) {
+            root = new BinaryTreeNode();
+            root.setElement(element);
+            return root;
         }
 
-        boolean contains = contains(super.getRoot(), element);
+        if (element < root.getElement())     //insert in the left subtree
+            root.addLeftChild(insert_Recursive(root.getRightChild(), element));
+        else if (element > root.getElement())    //insert in the right subtree
+            root.addRightChild(insert_Recursive(root.getRightChild(), element));
 
-        if (contains)
-        {
-            return;
-        }
-        else
-        {
-            BinaryTreeNode node = getRoot();
-
-            while (node.getLeftChild() != null || node.getRightChild() != null)
-            {
-
-            }
-        }
+        return root;
     }
 
 

@@ -271,48 +271,7 @@ public class BinaryTree_ADT
 
 
 
-/*
 
-    public ArrayList<Integer> postOrder2()
-    {
-        if (node == null)
-            return null;
-
-        Stack<BinaryTreeNode> s = new Stack<>();
-        BinaryTreeNode current = node;
-
-        while (true)
-        {
-            while (current != null)
-            {
-                if (current.getRightChild() != null)
-                    s.push(current.getRightChild());
-                s.push(current);
-                current = current.getLeftChild();
-            }
-
-            if (s.isEmpty())
-                return list;
-
-
-            current = s.pop();
-
-            if (current.getRightChild() != null && !s.isEmpty() && current.getRightChild() == s.peek())
-            {
-                s.pop();
-                s.push(current);
-                current = current.getRightChild();
-            }
-            else
-            {
-                list.add(current.getElement());
-                current = null;
-            }
-        }
-    }
-
-
- */
 
 
 }
