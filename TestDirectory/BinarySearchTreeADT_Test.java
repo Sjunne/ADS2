@@ -7,7 +7,7 @@ public class BinarySearchTreeADT_Test {
     private BinarySearchTreeADT searchTree;
     private BinarySearchTreeADT searchTree2;
 
-    /*
+
 
     @BeforeEach
     public void BinarySearchTreeADT_Test()
@@ -15,6 +15,7 @@ public class BinarySearchTreeADT_Test {
         searchTree = new BinarySearchTreeADT();
     }
 
+    /*
     @Test
     public void testInsert()
     {
@@ -37,7 +38,10 @@ public class BinarySearchTreeADT_Test {
         // We expect the result to not be equal
         Assertions.assertEquals(size2++,size3);
     }
+    */
 
+
+    /*
     @Test
     public void testRemoveElement()
     {
@@ -56,7 +60,10 @@ public class BinarySearchTreeADT_Test {
         // We expect the result to be true
         Assertions.assertEquals(size2, size3);
     }
+    */
 
+
+    /*
     @Test
     public void testFindMin()
     {
@@ -68,7 +75,10 @@ public class BinarySearchTreeADT_Test {
         // We expect the result to be true
         Assertions.assertEquals(1, minimum);
     }
+    */
 
+
+     /*
     @Test
     public void testFindMax()
     {
@@ -80,20 +90,26 @@ public class BinarySearchTreeADT_Test {
         // We expect the result to be true
         Assertions.assertEquals(6, maximum);
     }
+    */
+
 
     @Test
     public void testRebalance()
     {
-        setupSearchTree6Notes(searchTree);
-        setupBBSTWith6Notes(searchTree2);
+        setupSearchTree7Notes(searchTree);
+        setupBBSTWith7Notes(searchTree2);
 
-        searchTree.rebalance();
+        // We expect the result to be true as the two trees are not equal
+        Assertions.assertNotEquals(searchTree, searchTree2);
+
+        searchTree.rebalance(); // Need method
 
         // We expect the result to be true
         Assertions.assertEquals(searchTree, searchTree2);
     }
 
-    private void setupBBSTWith6Notes(BinarySearchTreeADT searchTree)
+
+    private void setupBBSTWith7Notes(BinarySearchTreeADT searchTree)
     {
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
@@ -101,13 +117,17 @@ public class BinarySearchTreeADT_Test {
         BinaryTreeNode node4 = new BinaryTreeNode();
         BinaryTreeNode node5 = new BinaryTreeNode();
         BinaryTreeNode node6 = new BinaryTreeNode();
+        BinaryTreeNode node7 = new BinaryTreeNode();
+
 
         searchTree.setRoot(node4);
         node4.addLeftChild(node2);
-        node4.addRightChild(node5);
+        node4.addRightChild(node6);
         node2.addLeftChild(node1);
         node2.addRightChild(node3);
-        node5.addLeftChild(node6);
+        node6.addLeftChild(node5);
+        node6.addRightChild(node7);
+
 
         node1.setElement(1);
         node2.setElement(2);
@@ -115,9 +135,14 @@ public class BinarySearchTreeADT_Test {
         node4.setElement(4);
         node5.setElement(5);
         node6.setElement(6);
+        node6.setElement(6);
+
     }
 
-    private void setupSearchTree6Notes(BinarySearchTreeADT searchTree)
+
+
+
+    private void setupSearchTree7Notes(BinarySearchTreeADT searchTree)
     {
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
@@ -125,6 +150,7 @@ public class BinarySearchTreeADT_Test {
         BinaryTreeNode node4 = new BinaryTreeNode();
         BinaryTreeNode node5 = new BinaryTreeNode();
         BinaryTreeNode node6 = new BinaryTreeNode();
+        BinaryTreeNode node7 = new BinaryTreeNode();
 
         searchTree.setRoot(node1);
         node1.addLeftChild(node2);
@@ -132,6 +158,7 @@ public class BinarySearchTreeADT_Test {
         node2.addLeftChild(node4);
         node2.addRightChild(node5);
         node4.addLeftChild(node6);
+        node4.addRightChild(node7);
 
         node1.setElement(1);
         node2.setElement(2);
@@ -139,10 +166,12 @@ public class BinarySearchTreeADT_Test {
         node4.setElement(4);
         node5.setElement(5);
         node6.setElement(6);
+        node7.setElement(7);
+
 
     }
 
-*/
+
 
 
 }
