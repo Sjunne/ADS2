@@ -3,22 +3,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BinaryTree_ADTTest {
 
     private BinaryTree_ADT tree;
-    private BinarySearchTreeADT searchTreeADT;
+
     @BeforeEach
-    public void BinaryTree_ADTTest()
-    {
+    public void BinaryTree_ADTTest() {
         tree = new BinaryTree_ADT();
-        searchTreeADT = new BinarySearchTreeADT();
     }
 
 
     @Test
-    public void TestSetAndGetRoot()
-    {
+    public void TestSetAndGetRoot() {
         BinaryTreeNode rootNode = new BinaryTreeNode();
         tree.setRoot(rootNode);
 
@@ -29,10 +27,8 @@ public class BinaryTree_ADTTest {
     }
 
 
-
     @Test
-    public void TestIsEmpty()
-    {
+    public void TestIsEmpty() {
         //Check if root is empty, when it has never been set
         BinaryTreeNode root = tree.getRoot();
         Assertions.assertEquals(null, root);
@@ -44,8 +40,7 @@ public class BinaryTree_ADTTest {
 
 
     @Test
-    public void TestInOrderMethod()
-    {
+    public void TestInOrderMethod() {
         setUpTree6NotesLeftHeavySide();
         //nodes elements are 1-2-3-4-5-6
         ArrayList<Integer> integers = tree.inOrder();
@@ -57,16 +52,36 @@ public class BinaryTree_ADTTest {
         inOrderArrayList.add(1);
         inOrderArrayList.add(3);
 
-        //we expect the 2 arraylist to be equal
+        //we expect the 2 arraylists to be equal
         Assertions.assertEquals(inOrderArrayList, integers);
 
 
-        
+        /**
+         * Checking different tree setups:
+         * Big, small, heavy left, heavy right
+         */
+
+        //31 nodes balanced tree
+        setUpTree31NodesBalanced();
+        ArrayList<Integer> tree = this.tree.inOrder();
+        List<Integer> expectedOrderArrayList = List.of( 24, 12, 25, 6, 26, 13, 27, 3, 28, 14, 29, 7, 30, 15, 31, 1, 20, 10, 21, 5, 22, 11, 23, 2, 16, 8, 17, 4, 18, 9, 19);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
+
+        //Heavy right sided tree
+        setUpTree20NoteRightHeavySide();
+        tree = this.tree.inOrder();
+        expectedOrderArrayList = List.of(6,3,7,1,16,10,17,5,18,11,19,2,14,9,15,4,20,12,8,13);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
+
+        //Heavy Left
+        setUpTree20NotesLeftHeavySide();
+        tree = this.tree.inOrder();
+        expectedOrderArrayList = List.of(12,19,8,20,13,6,14,9,15,3,16,10,17,7,18,11,1,5,2,4);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
     }
 
     @Test
-    public void size()
-    {
+    public void size() {
         //testing size after Inorder, as size uses it.
         setUpTree6NotesLeftHeavySide();
         //nodes elements are 1-2-3-4-5-6
@@ -78,8 +93,7 @@ public class BinaryTree_ADTTest {
 
 
     @Test
-    public void testCointainsMethod()
-    {
+    public void testCointainsMethod() {
         //nodes elements are 1-2-3-4-5-6
         setUpTree6NotesLeftHeavySide();
 
@@ -97,8 +111,7 @@ public class BinaryTree_ADTTest {
     }
 
     @Test
-    public void testPreOrderMethod()
-    {
+    public void testPreOrderMethod() {
         setUpTree6NotesLeftHeavySide();
         //nodes elements are 1-2-3-4-5-6
         ArrayList<Integer> integers = tree.preOrder();
@@ -112,11 +125,33 @@ public class BinaryTree_ADTTest {
 
         //we expect the 2 arraylist to be equal
         Assertions.assertEquals(inPreOrderArrayList, integers);
+
+        /**
+         * Checking different tree setups:
+         * Big, small, heavy left, heavy right
+         */
+
+        //31 nodes balanced tree
+        setUpTree31NodesBalanced();
+        ArrayList<Integer> tree = this.tree.preOrder();
+        List<Integer> expectedOrderArrayList = List.of( 1, 3, 6, 12, 24, 25, 13, 26, 27, 7, 14, 28, 29, 15, 30, 31, 2, 5, 10, 20, 21, 11, 22, 23, 4, 8, 16, 17, 9, 18, 19);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
+
+        //Heavy right sided tree
+        setUpTree20NoteRightHeavySide();
+        tree = this.tree.preOrder();
+        expectedOrderArrayList = List.of(1,3,6,7,2,5,10,16,17,11,18,19,4,9,14,15,8,12,20,13);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
+
+        //Heavy Left
+        setUpTree20NotesLeftHeavySide();
+        tree = this.tree.preOrder();
+        expectedOrderArrayList = List.of(1,3,6,8,12,19,13,20,9,14,15,7,10,16,17,11,18,2,5,4);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
     }
 
     @Test
-    public void testPostOrderMethod()
-    {
+    public void testPostOrderMethod() {
         setUpTree6NotesLeftHeavySide();
         //nodes elements are 1-2-3-4-5-6
         ArrayList<Integer> integers = tree.postOrder();
@@ -130,11 +165,33 @@ public class BinaryTree_ADTTest {
 
         //we expect the 2 arraylist to be equal
         Assertions.assertEquals(inPostOrderArrayList, integers);
+
+        /**
+         * Checking different tree setups:
+         * Big, small, heavy left, heavy right
+         */
+
+        //31 nodes balanced tree
+        setUpTree31NodesBalanced();
+        ArrayList<Integer> tree = this.tree.postOrder();
+        List<Integer> expectedOrderArrayList = List.of( 24, 25, 12, 26, 27, 13, 6, 28, 29, 14, 30, 31, 15, 7, 3, 20, 21, 10, 22, 23, 11, 5, 16, 17, 8, 18, 19, 9, 4, 2, 1);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
+
+        //Heavy right sided tree
+        setUpTree20NoteRightHeavySide();
+        tree = this.tree.postOrder();
+        expectedOrderArrayList = List.of(6,7,3,16,17,10,18,19,11,5,14,15,9,20,12,13,8,4,2,1);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
+
+        //Heavy Left
+        setUpTree20NotesLeftHeavySide();
+        tree = this.tree.postOrder();
+        expectedOrderArrayList = List.of(19,12,20,13,8,14,15,9,6,16,17,10,18,11,7,3,5,4,2,1);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
     }
 
     @Test
-    public void testLevelOrder()
-    {
+    public void testLevelOrder() {
         setUpTree6NotesLeftHeavySide();
         //nodes elements are 1-2-3-4-5-6
         ArrayList<Integer> integers = tree.levelOrder();
@@ -148,11 +205,33 @@ public class BinaryTree_ADTTest {
 
         //we expect the 2 arraylist to be equal
         Assertions.assertEquals(inLevelOrder, integers);
+
+        /**
+         * Checking different tree setups:
+         * Big, small, heavy left, heavy right
+         */
+
+        //31 nodes balanced tree
+        setUpTree31NodesBalanced();
+        ArrayList<Integer> tree = this.tree.levelOrder();
+        List<Integer> expectedOrderArrayList = List.of(1, 3, 2, 6, 7, 5, 4, 12, 13, 14, 15, 10, 11, 8, 9, 24, 25, 26, 27, 28, 29, 30, 31, 20, 21, 22, 23, 16, 17, 18, 19);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
+
+        //Heavy right sided tree
+        setUpTree20NoteRightHeavySide();
+        tree = this.tree.levelOrder();
+        expectedOrderArrayList = List.of(1,3,2,6,7,5,4,10,11,9,8,16,17,18,19,14,15,12,13,20);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
+
+        //Heavy Left
+        setUpTree20NotesLeftHeavySide();
+        tree = this.tree.levelOrder();
+        expectedOrderArrayList = List.of(1,3,2,6,7,5,4,8,9,10,11,12,13,14,15,16,17,18,19,20);
+        Assertions.assertEquals(expectedOrderArrayList, tree);
     }
 
     @Test
-    public void testHeightOfTree()
-    {
+    public void testHeightOfTree() {
         //hvis tree'et er tomt, skal height returne -1
         int height0 = tree.height();
         Assertions.assertEquals(-1, height0);
@@ -167,8 +246,7 @@ public class BinaryTree_ADTTest {
 
     // Testing large BinaryTree 31 nodes ------------------------------------------------------
     @Test
-    public void TestInOrderMethodTree31NodesBalanced()
-    {
+    public void TestInOrderMethodTree31NodesBalanced() {
         setUpTree31NodesBalanced();
         //nodes elements are 1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31
         ArrayList<Integer> integers = tree.inOrder();
@@ -213,8 +291,7 @@ public class BinaryTree_ADTTest {
     }
 
     @Test
-    public void TestPreOrderMethodTree31NodesBalanced()
-    {
+    public void TestPreOrderMethodTree31NodesBalanced() {
         setUpTree31NodesBalanced();
         //nodes elements are 1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31
         ArrayList<Integer> integers = tree.preOrder();
@@ -260,8 +337,7 @@ public class BinaryTree_ADTTest {
     }
 
     @Test
-    public void TestPostOrderMethodTree31NodesBalanced()
-    {
+    public void TestPostOrderMethodTree31NodesBalanced() {
         setUpTree31NodesBalanced();
         //nodes elements are 1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31
         ArrayList<Integer> integers = tree.postOrder();
@@ -307,8 +383,7 @@ public class BinaryTree_ADTTest {
     }
 
     @Test
-    public void TestLevelOrderMethodTree31NodesBalanced()
-    {
+    public void TestLevelOrderMethodTree31NodesBalanced() {
         setUpTree31NodesBalanced();
         //nodes elements are 1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31
         ArrayList<Integer> integers = tree.levelOrder();
@@ -353,43 +428,7 @@ public class BinaryTree_ADTTest {
         //[1, 3, 2, 6, 7, 5, 4, 12, 13, 14, 15, 10, 11, 8, 9, 24, 25, 26, 27, 28, 29, 30, 31, 20, 21, 22, 23, 16, 17, 18, 19]
     }
 
-
-    @Test
-    public void removeLeafNode()
-    {
-        setUpTree6NotesLeftHeavySide();
-        tree.removeElement(3);
-        ArrayList<Integer> integers = tree.inOrder();
-        ArrayList<Integer> correctInOrder = new ArrayList<>();
-        correctInOrder.add(6);
-        correctInOrder.add(4);
-        correctInOrder.add(2);
-        correctInOrder.add(5);
-        correctInOrder.add(1);
-
-        Assertions.assertEquals(correctInOrder, integers);
-
-    }
-
-    @Test
-    public void removeARootNode()
-    {
-        setUpTree6NotesLeftHeavySide();
-        tree.removeElement(1);
-        ArrayList<Integer> integers = tree.inOrder();
-        ArrayList<Integer> correctInOrder = new ArrayList<>();
-        correctInOrder.add(6);
-        correctInOrder.add(4);
-        correctInOrder.add(2);
-        correctInOrder.add(5);
-        correctInOrder.add(3);
-
-        Assertions.assertEquals(correctInOrder, integers);
-
-    }
-
-    private void setUpTree6NotesLeftHeavySide()
-    {
+    private void setUpTree6NotesLeftHeavySide() {
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
         BinaryTreeNode node3 = new BinaryTreeNode();
@@ -413,8 +452,7 @@ public class BinaryTree_ADTTest {
     }
 
 
-    private void setUpTree6NotesRightHeavySide()
-    {
+    private void setUpTree6NotesRightHeavySide() {
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
         BinaryTreeNode node3 = new BinaryTreeNode();
@@ -438,8 +476,7 @@ public class BinaryTree_ADTTest {
     }
 
 
-    private void setUpTree7NotesBalanced()
-    {
+    private void setUpTree7NotesBalanced() {
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
         BinaryTreeNode node3 = new BinaryTreeNode();
@@ -466,9 +503,7 @@ public class BinaryTree_ADTTest {
     }
 
 
-
-    private void setUpTree20NotesLeftHeavySide()
-    {
+    private void setUpTree20NoteRightHeavySide() {
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
         BinaryTreeNode node3 = new BinaryTreeNode();
@@ -489,7 +524,6 @@ public class BinaryTree_ADTTest {
         BinaryTreeNode node18 = new BinaryTreeNode();
         BinaryTreeNode node19 = new BinaryTreeNode();
         BinaryTreeNode node20 = new BinaryTreeNode();
-
 
 
         tree.setRoot(node1);
@@ -515,7 +549,6 @@ public class BinaryTree_ADTTest {
         node12.addLeftChild(node20);
 
 
-
         node1.setElement(1);
         node2.setElement(2);
         node3.setElement(3);
@@ -538,8 +571,7 @@ public class BinaryTree_ADTTest {
         node20.setElement(20);
     }
 
-    private void setUpTree20NotesRightHeavySide()
-    {
+    private void setUpTree20NotesLeftHeavySide() {
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
         BinaryTreeNode node3 = new BinaryTreeNode();
@@ -560,7 +592,6 @@ public class BinaryTree_ADTTest {
         BinaryTreeNode node18 = new BinaryTreeNode();
         BinaryTreeNode node19 = new BinaryTreeNode();
         BinaryTreeNode node20 = new BinaryTreeNode();
-
 
 
         tree.setRoot(node1);
@@ -607,8 +638,7 @@ public class BinaryTree_ADTTest {
         node20.setElement(20);
     }
 
-    private void setUpTree31NodesBalanced()
-    {
+    private void setUpTree31NodesBalanced() {
         BinaryTreeNode node1 = new BinaryTreeNode();
         BinaryTreeNode node2 = new BinaryTreeNode();
         BinaryTreeNode node3 = new BinaryTreeNode();
@@ -708,8 +738,5 @@ public class BinaryTree_ADTTest {
         node30.setElement(30);
         node31.setElement(31);
     }
-
-
-
 
 }
